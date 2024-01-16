@@ -1,0 +1,50 @@
+name: termusic
+adopt-info: termusic
+summary: Terminal Music and Podcast Player written in Rust
+description: |
+    Listen to music and podcasts freely as both in freedom and free of charge!
+
+license: GPL-3.0
+
+base: core20
+grade: stable
+confinement: strict
+compression: lzo
+
+apps:
+  termusic:
+    command: bin/termusic
+    environment:
+      PATH: $SNAP/bin/:$PATH       
+    plugs:
+      - network
+      - home
+      - audio-playback
+   
+parts:
+  termusic:
+    source: https://github.com/tramhao/termusic
+    source-type: git
+    plugin: rust
+    
+    build-packages:
+      - alsa-base
+      - alsaplayer-common
+      - gstreamer1.0-alsa
+      - mpv
+      - openssl
+      - libssl-dev
+      - libdbus-1-dev 
+      - pkg-config
+      
+    stage-packages:
+      - alsa-base
+      - alsaplayer-common    
+      - gstreamer1.0-alsa
+      - mpv 
+      - openssl
+      - libssl1.1
+    
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"

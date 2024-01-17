@@ -35,6 +35,7 @@ parts:
       - libssl-dev
       - libdbus-1-dev 
       - pkg-config
+      - protobuf-compiler
       
     stage-packages:
       - libasound2-dev  

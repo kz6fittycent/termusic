@@ -20,6 +20,8 @@ apps:
       - network
       - home
       - audio-playback
+      - network-observe
+      - network-bind
    
 parts:
   termusic:

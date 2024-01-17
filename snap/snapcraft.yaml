@@ -13,9 +13,7 @@ compression: lzo
 
 apps:
   termusic:
-    command: bin/termusic
-    environment:
-      PATH: $SNAP/bin/:$PATH       
+    command: $SNAP/.local/share/cargo/bin/termusic
     plugs:
       - network
       - home

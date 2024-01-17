@@ -8,7 +8,7 @@ license: GPL-3.0
 
 base: core20
 grade: stable
-confinement: strict
+confinement: classic
 compression: lzo
 
 apps:
@@ -16,12 +16,6 @@ apps:
     command: termusic
     environment:
       PATH: $SNAP/bin/:$PATH
-    plugs:
-      - network
-      - home
-      - audio-playback
-      - network-observe
-      - network-bind
    
 parts:
   termusic:
@@ -49,4 +43,4 @@ parts:
     
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//')"

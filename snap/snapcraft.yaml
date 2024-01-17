@@ -45,7 +45,7 @@ parts:
       - mpv 
       - openssl
       - libssl1.1
-      - libdbus-1-3
+      - libdbus-1-dev
     
     override-pull: |
       snapcraftctl pull

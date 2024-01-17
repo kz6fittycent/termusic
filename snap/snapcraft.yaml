@@ -28,8 +28,7 @@ parts:
     plugin: rust
     
     build-packages:
-      - alsa-base
-      - alsaplayer-common
+      - libasound2-dev
       - gstreamer1.0-alsa
       - mpv
       - openssl
@@ -38,8 +37,7 @@ parts:
       - pkg-config
       
     stage-packages:
-      - alsa-base
-      - alsaplayer-common    
+      - libasound2-dev  
       - gstreamer1.0-alsa
       - mpv 
       - openssl

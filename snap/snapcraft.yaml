@@ -13,7 +13,7 @@ compression: lzo
 
 apps:
   termusic:
-    command: termusic
+    command: usr/bin/snapcraft-preload termusic
     environment:
       PATH: $SNAP/bin/:$PATH
    
@@ -40,7 +40,23 @@ parts:
       - openssl
       - libssl1.1
       - libdbus-1-dev
+      - libglu1-mesa
     
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "$(git describe --tags | sed 's/^v//')"
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
+      
+    after: 
+      - snapcraft-preload
+      
+  snapcraft-preload:
+    source: https://github.com/sergiusens/snapcraft-preload.git
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr -DLIBPATH=/usr/lib
+    build-packages:
+      - on amd64:
+          - gcc-multilib
+          - g++-multilib
+    stage-packages:
+      - lib32stdc++6        
